@@ -3,8 +3,9 @@ import dumbell from '../../assets/icon-dumbell.svg';
 import bike from '../../assets/icon-bike.svg';
 import meditation from '../../assets/icon-meditation.svg';
 import swimming from '../../assets/icon-swimming.svg';
-import { NavLink } from 'react-router-dom';
 import './LeftNav.css';
+
+import { NavLink } from 'react-router-dom';
 
 export default function LeftNav() {
 	return (
