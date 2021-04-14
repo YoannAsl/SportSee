@@ -1,5 +1,7 @@
 import React from 'react';
-import RadarChart from '../ChartRadar/ChartRadar';
+import ChartRadar from '../ChartRadar/ChartRadar';
+import ChartLine from './../ChartLine/ChartLine';
+import './Dashboard.css';
 
 export default function Dashboard(props) {
 	return (
@@ -10,7 +12,10 @@ export default function Dashboard(props) {
 				</h1>
 				<p>Félicitations ! Vous avez explosé vos objectifs hier 👏</p>
 			</header>
-			<RadarChart />
+			<div>
+				<ChartLine />
+				<ChartRadar />
+			</div>
 		</div>
 	);
 }

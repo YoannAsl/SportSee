@@ -11,14 +11,14 @@ import './ChartRadar.css';
 import { getUserPerformance } from '../../services/api.js';
 
 export default function ChartRadar() {
-	// const [kind, setKind] = useState({});
+	const [kind, setKind] = useState({});
 	const [data, setData] = useState([]);
 
 	useEffect(() => {
 		const getData = async () => {
 			const request = await getUserPerformance(12);
 			setData(request.data.data);
-			// setKind(request.data.kind);
+			setKind(request.data.kind);
 		};
 		getData();
 	}, []);
@@ -26,33 +26,36 @@ export default function ChartRadar() {
 	// const adjustedData = data.map((el) => {
 	// 	switch (el.kind) {
 	// 		case 1:
-	// 			return { ...el, type: 'Cardio' };
+	// 			return { ...el, kind: 'Cardio' };
 	// 		case 2:
-	// 			return { ...el, type: 'Energy' };
+	// 			return { ...el, kind: 'Energy' };
 	// 		case 3:
-	// 			return { ...el, type: 'Endurance' };
+	// 			return { ...el, kind: 'Endurance' };
 	// 		case 4:
-	// 			return { ...el, type: 'Strength' };
+	// 			return { ...el, kind: 'Strength' };
 	// 		case 5:
-	// 			return { ...el, type: 'Speed' };
+	// 			return { ...el, kind: 'Speed' };
 	// 		case 6:
-	// 			return { ...el, type: 'Intensity' };
+	// 			return { ...el, kind: 'Intensity' };
 
 	// 		default:
 	// 			return { ...el };
 	// 	}
 	// });
 
-	// const changeAxisLabel = data.map((el, index) => {
-	// 	el.type = kind[index + 1];
-	// });
-
-	// changeAxisLabel();
+	const adjustedData = data.map((el) => {
+		return { ...el, kind: kind[el.kind] };
+	});
 
 	return (
 		<div className='radar-container'>
 			<ResponsiveContainer width='100%' height='100%'>
-				<RadarChart cx='50%' cy='50%' outerRadius='70%' data={data}>
+				<RadarChart
+					cx='50%'
+					cy='50%'
+					outerRadius='70%'
+					data={adjustedData}
+				>
 					<PolarGrid />
 					<PolarAngleAxis
 						dataKey='kind'
