@@ -1,3 +1,3 @@
 Dependencies
 
-react react-router-dom axios recharts prop-types
+react react-router-dom axios recharts prop-types styled-components

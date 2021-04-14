@@ -6,9 +6,17 @@ import {
 	PolarAngleAxis,
 	ResponsiveContainer,
 } from 'recharts';
-import './ChartRadar.css';
+import styled from 'styled-components';
 
-import { getUserPerformance } from '../../services/api.js';
+import { getUserPerformance } from '../services/api.js';
+
+const Container = styled.div`
+	height: 263px;
+	width: 258px;
+	background: #282d30;
+	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0212249);
+	border-radius: 5px;
+`;
 
 export default function ChartRadar() {
 	const [kind, setKind] = useState({});
@@ -48,7 +56,7 @@ export default function ChartRadar() {
 	});
 
 	return (
-		<div className='radar-container'>
+		<Container>
 			<ResponsiveContainer width='100%' height='100%'>
 				<RadarChart
 					cx='50%'
@@ -71,6 +79,6 @@ export default function ChartRadar() {
 					/>
 				</RadarChart>
 			</ResponsiveContainer>
-		</div>
+		</Container>
 	);
 }

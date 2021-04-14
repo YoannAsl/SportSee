@@ -2,7 +2,7 @@ import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 
 import UserPage from './pages/UserPage';
 import ErrorPage from './pages/ErrorPage';
-import Header from './components/Header/Header';
+import Header from './components/Header';
 
 function App() {
 	return (

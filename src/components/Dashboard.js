@@ -1,11 +1,16 @@
 import React from 'react';
-import ChartRadar from '../ChartRadar/ChartRadar';
-import ChartLine from './../ChartLine/ChartLine';
-import './Dashboard.css';
+import styled from 'styled-components';
+
+import ChartRadar from './ChartRadar';
+import ChartLine from './ChartLine';
+
+const Container = styled.div`
+	margin: 70px 90px 88px 110px;
+`;
 
 export default function Dashboard(props) {
 	return (
-		<div className='dashboard'>
+		<Container>
 			<header className='user-header'>
 				<h1>
 					Bonjour <span className='first-name'>Thomas</span>
@@ -16,6 +21,6 @@ export default function Dashboard(props) {
 				<ChartLine />
 				<ChartRadar />
 			</div>
-		</div>
+		</Container>
 	);
 }
