@@ -18,42 +18,42 @@ const Container = styled.div`
 	border-radius: 5px;
 `;
 
-export default function ChartRadar() {
-	const [kind, setKind] = useState({});
+export default function PerformanceChart() {
+	// const [kind, setKind] = useState({});
 	const [data, setData] = useState([]);
 
 	useEffect(() => {
 		const getData = async () => {
 			const request = await getUserPerformance(12);
 			setData(request.data.data);
-			setKind(request.data.kind);
+			// setKind(request.data.kind);
 		};
 		getData();
 	}, []);
 
-	// const adjustedData = data.map((el) => {
-	// 	switch (el.kind) {
-	// 		case 1:
-	// 			return { ...el, kind: 'Cardio' };
-	// 		case 2:
-	// 			return { ...el, kind: 'Energy' };
-	// 		case 3:
-	// 			return { ...el, kind: 'Endurance' };
-	// 		case 4:
-	// 			return { ...el, kind: 'Strength' };
-	// 		case 5:
-	// 			return { ...el, kind: 'Speed' };
-	// 		case 6:
-	// 			return { ...el, kind: 'Intensity' };
-
-	// 		default:
-	// 			return { ...el };
-	// 	}
-	// });
-
 	const adjustedData = data.map((el) => {
-		return { ...el, kind: kind[el.kind] };
+		switch (el.kind) {
+			case 1:
+				return { ...el, kind: 'Cardio' };
+			case 2:
+				return { ...el, kind: 'Energy' };
+			case 3:
+				return { ...el, kind: 'Endurance' };
+			case 4:
+				return { ...el, kind: 'Strength' };
+			case 5:
+				return { ...el, kind: 'Speed' };
+			case 6:
+				return { ...el, kind: 'Intensity' };
+
+			default:
+				return { ...el };
+		}
 	});
+
+	// const adjustedData = data.map((el) => {
+	// 	return { ...el, kind: kind[el.kind] };
+	// });
 
 	return (
 		<Container>

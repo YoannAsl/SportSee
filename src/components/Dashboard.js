@@ -1,11 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import ChartRadar from './ChartRadar';
-import ChartLine from './ChartLine';
+import PerformanceChart from './PerformanceChart';
+import AverageSessionsChart from './AverageSessionsChart';
+import ScoreChart from './ScoreChart';
 
 const Container = styled.div`
 	margin: 70px 90px 88px 110px;
+`;
+
+const ChartsContainer = styled.div`
+	display: flex;
 `;
 
 export default function Dashboard(props) {
@@ -17,10 +22,11 @@ export default function Dashboard(props) {
 				</h1>
 				<p>Félicitations ! Vous avez explosé vos objectifs hier 👏</p>
 			</header>
-			<div>
-				<ChartLine />
-				<ChartRadar />
-			</div>
+			<ChartsContainer>
+				<AverageSessionsChart />
+				<PerformanceChart />
+				<ScoreChart />
+			</ChartsContainer>
 		</Container>
 	);
 }

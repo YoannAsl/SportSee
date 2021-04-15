@@ -9,7 +9,7 @@ const CustomTooltip = styled.div`
 	padding: 4px 7px;
 `;
 
-export default function ChartLineTooltip(props) {
+export default function AverageSessionsChartTooltip(props) {
 	if (props.active) {
 		return <CustomTooltip>{props.payload[0].value} min</CustomTooltip>;
 	}
