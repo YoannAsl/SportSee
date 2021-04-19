@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 import styled from 'styled-components';
-
-import { getUserInfos } from './../services/api';
 
 const Container = styled.div`
 	position: relative;
@@ -47,30 +45,8 @@ const InnerCircle = styled.div`
 	background-color: white;
 `;
 
-export default function ScoreChart() {
-	const [data, setData] = useState([]);
-
-	useEffect(() => {
-		const getData = async () => {
-			const request = await getUserInfos(12);
-			setData([
-				{ score: request.data.todayScore || request.data.score },
-				{
-					score:
-						1 - request.data.todayScore || 1 - request.data.score,
-				},
-			]);
-		};
-		getData();
-	}, []);
-
-	// eslint-disable-next-line array-callback-return
-	const adjustedData = data.map((el, index) => {
-		if (index === 0) return el.score * 100;
-		// console.log(el.score * 100);
-	});
-	// data[0].score * 100 || data[0].todayScore * 100;
-	// console.log(adjustedData[0]);
+export default function ScoreChart(props) {
+	const score = props.score;
 
 	return (
 		<Container>
@@ -79,12 +55,12 @@ export default function ScoreChart() {
 			<ResponsiveContainer width='100%' height='100%'>
 				<PieChart>
 					<Pie
-						data={data}
+						data={score}
 						dataKey='score'
 						innerRadius={73}
 						outerRadius={85}
 					>
-						{data.map((entry, index) => {
+						{score.map((entry, index) => {
 							if (index === 0) {
 								return (
 									<Cell
@@ -106,7 +82,8 @@ export default function ScoreChart() {
 				</PieChart>
 			</ResponsiveContainer>
 			<Objective>
-				<span>{adjustedData[0]}%</span> <br /> de votre <br /> objectif
+				<span>{score[0].score * 100}%</span> <br /> de votre <br />{' '}
+				objectif
 			</Objective>
 		</Container>
 	);
