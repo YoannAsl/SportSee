@@ -7,6 +7,7 @@ import {
 	ResponsiveContainer,
 } from 'recharts';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 import { getUserPerformance } from '../services/api.js';
 
@@ -18,60 +19,31 @@ const Container = styled.div`
 	border-radius: 5px;
 `;
 
-export default function PerformanceChart() {
-	const [kind, setKind] = useState({});
+export default function PerformanceChart({ id }) {
 	const [data, setData] = useState([]);
 
 	useEffect(() => {
 		const getData = async () => {
-			const request = await getUserPerformance(12);
+			const request = await getUserPerformance(id);
+			for (let i = 0, size = request.data.data.length; i < size; i++) {
+				request.data.data[i] = {
+					value: request.data.data[i].value,
+					kind:
+						request.data.kind[request.data.data[i].kind]
+							.charAt(0)
+							.toUpperCase() +
+						request.data.kind[request.data.data[i].kind].slice(1),
+				};
+			}
 			setData(request.data.data);
-			setKind(request.data.kind);
-			// console.log(request.data.data);
-			// console.log(request.data.kind);
 		};
 		getData();
-	}, []);
-
-	// const adjustedData = data.map((el) => {
-	// 	switch (el.kind) {
-	// 		case 1:
-	// 			return { ...el, kind: 'Cardio' };
-	// 		case 2:
-	// 			return { ...el, kind: 'Energy' };
-	// 		case 3:
-	// 			return { ...el, kind: 'Endurance' };
-	// 		case 4:
-	// 			return { ...el, kind: 'Strength' };
-	// 		case 5:
-	// 			return { ...el, kind: 'Speed' };
-	// 		case 6:
-	// 			return { ...el, kind: 'Intensity' };
-
-	// 		default:
-	// 			return { ...el };
-	// 	}
-	// });
-
-	const adjustedData = data.map((el) => {
-		return { ...el, kind: kind[el.kind] };
-	});
-
-	// const nameCapitalized = name.charAt(0).toUpperCase() + name.slice(1)
-
-	// String.prototype.capitalize = function() {
-	//   return this.charAt(0).toUpperCase() + this.slice(1)
-	// }
+	}, [id]);
 
 	return (
 		<Container>
 			<ResponsiveContainer width='100%' height='100%'>
-				<RadarChart
-					cx='50%'
-					cy='50%'
-					outerRadius='70%'
-					data={adjustedData}
-				>
+				<RadarChart cx='50%' cy='50%' outerRadius='70%' data={data}>
 					<PolarGrid />
 					<PolarAngleAxis
 						dataKey='kind'
@@ -90,3 +62,7 @@ export default function PerformanceChart() {
 		</Container>
 	);
 }
+
+PerformanceChart.propTypes = {
+	id: PropTypes.string.isRequired,
+};

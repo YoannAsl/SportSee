@@ -9,6 +9,7 @@ import {
 	Bar,
 	CartesianGrid,
 } from 'recharts';
+import PropTypes from 'prop-types';
 
 import { getUserActivity } from '../services/api';
 
@@ -54,16 +55,16 @@ const Legend = styled.div`
 	}
 `;
 
-export default function ActivityChart() {
+export default function ActivityChart({ id }) {
 	const [data, setData] = useState([]);
 
 	useEffect(() => {
 		const getData = async () => {
-			const request = await getUserActivity(12);
+			const request = await getUserActivity(id);
 			setData(request.data.sessions);
 		};
 		getData();
-	}, []);
+	}, [id]);
 
 	const kgArray = data.map((el) => el.kilogram);
 	const minYKg = Math.min(...kgArray) - 1;
@@ -134,3 +135,7 @@ export default function ActivityChart() {
 		</Container>
 	);
 }
+
+ActivityChart.propTypes = {
+	id: PropTypes.string.isRequired,
+};

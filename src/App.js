@@ -10,7 +10,7 @@ function App() {
 			<BrowserRouter>
 				<Header />
 				<Switch>
-					{/* Pour etre redirige directement vers une page utilisateur en ouvrant le projet */}
+					{/* Redirects to a user page on project start */}
 					<Route exact path='/'>
 						<Redirect to='/user/12' />
 					</Route>

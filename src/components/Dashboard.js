@@ -4,6 +4,8 @@ import caloriesIcon from '../assets/icon-calories.svg';
 import proteinsIcon from '../assets/icon-proteins.svg';
 import carbsIcon from '../assets/icon-carbs.svg';
 import lipidsIcon from '../assets/icon-lipids.svg';
+import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import { getUserInfos } from './../services/api';
 import PerformanceChart from './PerformanceChart';
@@ -35,14 +37,19 @@ const ChartsContainer = styled.div`
 	justify-content: space-between;
 `;
 
-export default function Dashboard(props) {
+export default function Dashboard({ match }) {
 	const [data, setData] = useState([]);
 	const [score, setScore] = useState([]);
 
+	const { userInfos, keyData } = data;
+	const id = match.params.id;
+
 	useEffect(() => {
 		const getData = async () => {
-			const request = await getUserInfos(12);
-			// console.log(request.data.keyData);
+			const request = await getUserInfos(id);
+			if (!request) return <Redirect to='/404' />;
+
+			setData(request.data);
 			setScore([
 				{ score: request.data.todayScore || request.data.score },
 				{
@@ -52,30 +59,58 @@ export default function Dashboard(props) {
 			]);
 		};
 		getData();
-	}, []);
+	}, [id]);
 
-	console.log(data);
+	if (data.length === 0) return null;
+
 	return (
 		<Container>
 			<Header>
 				<h1>
-					Bonjour <span>Thomas</span>
+					Bonjour <span>{userInfos.firstName}</span>
 				</h1>
 				<p>Félicitations ! Vous avez explosé vos objectifs hier 👏</p>
 			</Header>
-			<ActivityChart />
+			<ActivityChart id={id} />
 			<ChartsContainer>
-				<AverageSessionsChart />
-				<PerformanceChart />
-				<ScoreChart score={score} />
+				<AverageSessionsChart id={id} />
+				<PerformanceChart id={id} />
+				<ScoreChart id={id} score={score} />
 			</ChartsContainer>
-			<MacroCounter image={caloriesIcon} color='rgba(255, 0, 0, 0.1)' />
-			<MacroCounter
-				image={proteinsIcon}
-				color='rgba(74, 184, 255, 0.1)'
-			/>
-			<MacroCounter image={carbsIcon} color='rgba(249, 206, 35, 0.1)' />
-			<MacroCounter image={lipidsIcon} color='rgba(253, 81, 129, 0.1)' />
+			<aside>
+				<MacroCounter
+					data={keyData.calorieCount}
+					unit='kCal'
+					image={caloriesIcon}
+					color='rgba(255, 0, 0, 0.1)'
+					text='Calories'
+				/>
+				<MacroCounter
+					data={keyData.proteinCount}
+					unit='g'
+					image={proteinsIcon}
+					color='rgba(74, 184, 255, 0.1)'
+					text='Proteines'
+				/>
+				<MacroCounter
+					data={keyData.carbohydrateCount}
+					unit='g'
+					image={carbsIcon}
+					color='rgba(249, 206, 35, 0.1)'
+					text='Glucides'
+				/>
+				<MacroCounter
+					data={keyData.lipidCount}
+					unit='g'
+					image={lipidsIcon}
+					color='rgba(253, 81, 129, 0.1)'
+					text='Lipides'
+				/>
+			</aside>
 		</Container>
 	);
 }
+
+Dashboard.propTypes = {
+	match: PropTypes.object.isRequired,
+};

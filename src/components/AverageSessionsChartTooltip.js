@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const CustomTooltip = styled.div`
 	font-weight: 500;
@@ -9,9 +10,14 @@ const CustomTooltip = styled.div`
 	padding: 4px 7px;
 `;
 
-export default function AverageSessionsChartTooltip(props) {
-	if (props.active) {
-		return <CustomTooltip>{props.payload[0].value} min</CustomTooltip>;
+export default function AverageSessionsChartTooltip({ active, payload }) {
+	if (active) {
+		return <CustomTooltip>{payload[0].value} min</CustomTooltip>;
 	}
 	return null;
 }
+
+AverageSessionsChartTooltip.propTypes = {
+	active: PropTypes.bool,
+	payload: PropTypes.array,
+};

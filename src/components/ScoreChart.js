@@ -1,6 +1,7 @@
 import React from 'react';
 import { ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const Container = styled.div`
 	position: relative;
@@ -45,8 +46,10 @@ const InnerCircle = styled.div`
 	background-color: white;
 `;
 
-export default function ScoreChart(props) {
-	const score = props.score;
+export default function ScoreChart({ score }) {
+	if (score.length === 0) {
+		return null;
+	}
 
 	return (
 		<Container>
@@ -88,3 +91,7 @@ export default function ScoreChart(props) {
 		</Container>
 	);
 }
+
+ScoreChart.propTypes = {
+	score: PropTypes.array.isRequired,
+};

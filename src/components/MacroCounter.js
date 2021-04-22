@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const Container = styled.div`
 	width: 258px;
@@ -7,9 +8,10 @@ const Container = styled.div`
 	border-radius: 5px;
 	background-color: #fbfbfb;
 	padding: 32px;
+	display: flex;
 `;
 
-const Icon = styled.div`
+const IconContainer = styled.div`
 	height: 60px;
 	width: 60px;
 	border-radius: 6px;
@@ -17,16 +19,46 @@ const Icon = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	margin-right: 24px;
 `;
 
-export default function MacroCounter(props) {
-	const { image, color, alt } = props;
+const TextContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	h3 {
+		font-size: 20px;
+		color: #282d30;
+	}
+	p {
+		font-weight: 500;
+		font-size: 14px;
+		color: #74798c;
+	}
+`;
 
+export default function MacroCounter({ data, unit, image, color, alt, text }) {
 	return (
 		<Container>
-			<Icon color={color}>
+			<IconContainer color={color}>
 				<img src={image} alt={alt} />
-			</Icon>
+			</IconContainer>
+			<TextContainer>
+				<h3>
+					{data}
+					{unit}
+				</h3>
+				<p>{text}</p>
+			</TextContainer>
 		</Container>
 	);
 }
+
+MacroCounter.propTypes = {
+	data: PropTypes.number.isRequired,
+	unit: PropTypes.string.isRequired,
+	image: PropTypes.string.isRequired,
+	color: PropTypes.string.isRequired,
+	alt: PropTypes.string,
+	text: PropTypes.string.isRequired,
+};

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ResponsiveContainer, LineChart, XAxis, Tooltip, Line } from 'recharts';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 import { getUserAverageSessions } from '../services/api';
 import AverageSessionsChartTooltip from './AverageSessionsChartTooltip';
@@ -24,16 +25,16 @@ const Title = styled.h2`
 	color: rgba(255, 255, 255, 0.5);
 `;
 
-export default function AverageSessionsChart() {
+export default function AverageSessionsChart({ id }) {
 	const [data, setData] = useState([]);
 
 	useEffect(() => {
 		const getData = async () => {
-			const request = await getUserAverageSessions(12);
+			const request = await getUserAverageSessions(id);
 			setData(request.data.sessions);
 		};
 		getData();
-	}, []);
+	}, [id]);
 
 	const adjustedData = data.map((el) => {
 		switch (el.day) {
@@ -96,3 +97,7 @@ export default function AverageSessionsChart() {
 		</Container>
 	);
 }
+
+AverageSessionsChart.propTypes = {
+	id: PropTypes.string.isRequired,
+};
