@@ -12,6 +12,7 @@ import {
 import PropTypes from 'prop-types';
 
 import { getUserActivity } from '../services/api';
+import ActivityChartTooltip from './ActivityChartTooltip';
 
 const Container = styled.div`
 	width: 835px;
@@ -99,7 +100,7 @@ export default function ActivityChart({ id }) {
 					barCategoryGap={1}
 				>
 					<CartesianGrid vertical={false} strokeDasharray='2 2' />
-					<Tooltip />
+					<Tooltip content={<ActivityChartTooltip />} />
 					<XAxis dataKey='day' axisLine={false} tickLine={false} />
 					<YAxis
 						yAxisId='kg'

@@ -15,7 +15,9 @@ import ActivityChart from './ActivityChart';
 import MacroCounter from './MacroCounter';
 
 const Container = styled.div`
-	margin: 60px 90px 88px 110px;
+	margin: 60px 0 0 110px;
+	width: 1126px;
+	height: 779px;
 `;
 
 const Header = styled.header`
@@ -33,6 +35,22 @@ const Header = styled.header`
 `;
 
 const ChartsContainer = styled.div`
+	display: flex;
+	justify-content: space-between;
+	height: 613px;
+	> div {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+	aside {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+`;
+
+const SmallChartsContainer = styled.div`
 	display: flex;
 	justify-content: space-between;
 `;
@@ -71,42 +89,46 @@ export default function Dashboard({ match }) {
 				</h1>
 				<p>Félicitations ! Vous avez explosé vos objectifs hier 👏</p>
 			</Header>
-			<ActivityChart id={id} />
 			<ChartsContainer>
-				<AverageSessionsChart id={id} />
-				<PerformanceChart id={id} />
-				<ScoreChart id={id} score={score} />
+				<div>
+					<ActivityChart id={id} />
+					<SmallChartsContainer>
+						<AverageSessionsChart id={id} />
+						<PerformanceChart id={id} />
+						<ScoreChart id={id} score={score} />
+					</SmallChartsContainer>
+				</div>
+				<aside>
+					<MacroCounter
+						data={keyData.calorieCount}
+						unit='kCal'
+						image={caloriesIcon}
+						color='rgba(255, 0, 0, 0.1)'
+						text='Calories'
+					/>
+					<MacroCounter
+						data={keyData.proteinCount}
+						unit='g'
+						image={proteinsIcon}
+						color='rgba(74, 184, 255, 0.1)'
+						text='Proteines'
+					/>
+					<MacroCounter
+						data={keyData.carbohydrateCount}
+						unit='g'
+						image={carbsIcon}
+						color='rgba(249, 206, 35, 0.1)'
+						text='Glucides'
+					/>
+					<MacroCounter
+						data={keyData.lipidCount}
+						unit='g'
+						image={lipidsIcon}
+						color='rgba(253, 81, 129, 0.1)'
+						text='Lipides'
+					/>
+				</aside>
 			</ChartsContainer>
-			<aside>
-				<MacroCounter
-					data={keyData.calorieCount}
-					unit='kCal'
-					image={caloriesIcon}
-					color='rgba(255, 0, 0, 0.1)'
-					text='Calories'
-				/>
-				<MacroCounter
-					data={keyData.proteinCount}
-					unit='g'
-					image={proteinsIcon}
-					color='rgba(74, 184, 255, 0.1)'
-					text='Proteines'
-				/>
-				<MacroCounter
-					data={keyData.carbohydrateCount}
-					unit='g'
-					image={carbsIcon}
-					color='rgba(249, 206, 35, 0.1)'
-					text='Glucides'
-				/>
-				<MacroCounter
-					data={keyData.lipidCount}
-					unit='g'
-					image={lipidsIcon}
-					color='rgba(253, 81, 129, 0.1)'
-					text='Lipides'
-				/>
-			</aside>
 		</Container>
 	);
 }
