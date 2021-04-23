@@ -16,11 +16,17 @@
 ## Installation
 
 1. Clone this repository
-```sh git clone https://github.com/YoannAsl/YoannAgesilas_12_10042021.git```
+    ```sh
+    git clone https://github.com/YoannAsl/YoannAgesilas_12_10042021.git
+    ```
 2. Install NPM packages 
-```sh npm i```
+    ```sh
+    npm i
+    ```
 3. Run the project
-```sh npm start``` (port 3002 by default)
+    ```sh
+    npm start
+    ``` (port 3002 by default)
 4. Getting the backend
 - This project uses a micro API available with instructions [here](https://github.com/OpenClassrooms-Student-Center/P9-front-end-dashboard).
 - There are 2 users available for the time being, their URL are 
