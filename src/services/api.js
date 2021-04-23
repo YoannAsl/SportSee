@@ -4,6 +4,12 @@ const instance = axios.create({
 	baseURL: 'http://localhost:3000/user',
 });
 
+/**
+ * Gets user infos from the API
+ *
+ * @param {string} id User id
+ * @returns {object} Response
+ */
 export const getUserInfos = async (id) => {
 	try {
 		const res = await instance.get(`/${id}`);
@@ -13,6 +19,12 @@ export const getUserInfos = async (id) => {
 	}
 };
 
+/**
+ * Gets user performance from the API
+ *
+ * @param {string} id User id
+ * @returns {object} Response
+ */
 export const getUserPerformance = async (id) => {
 	try {
 		const res = await instance.get(`/${id}/performance`);
@@ -22,6 +34,12 @@ export const getUserPerformance = async (id) => {
 	}
 };
 
+/**
+ * Gets user activity from the API
+ *
+ * @param {string} id User id
+ * @returns {object} Response
+ */
 export const getUserActivity = async (id) => {
 	try {
 		const res = await instance.get(`/${id}/activity`);
@@ -31,6 +49,12 @@ export const getUserActivity = async (id) => {
 	}
 };
 
+/**
+ * Gets user average sessions from the API
+ *
+ * @param {string} id User id
+ * @returns {object} Response
+ */
 export const getUserAverageSessions = async (id) => {
 	try {
 		const res = await instance.get(`/${id}/average-sessions`);

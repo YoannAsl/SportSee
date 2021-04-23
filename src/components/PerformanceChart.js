@@ -25,6 +25,8 @@ export default function PerformanceChart({ id }) {
 	useEffect(() => {
 		const getData = async () => {
 			const request = await getUserPerformance(id);
+
+			// Capitalizes first letter of each kind
 			for (let i = 0, size = request.data.data.length; i < size; i++) {
 				request.data.data[i] = {
 					value: request.data.data[i].value,
