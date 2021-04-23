@@ -26,7 +26,8 @@
 3. Run the project
     ```sh
     npm start
-    ``` (port 3002 by default)
+    ```
+    (port 3002 by default)
 4. Getting the backend
 - This project uses a micro API available with instructions [here](https://github.com/OpenClassrooms-Student-Center/P9-front-end-dashboard).
 - There are 2 users available for the time being, their URL are 
