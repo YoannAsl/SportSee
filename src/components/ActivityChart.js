@@ -62,6 +62,19 @@ export default function ActivityChart({ id }) {
 	useEffect(() => {
 		const getData = async () => {
 			const request = await getUserActivity(id);
+
+			// Changes the date on the XAxis to just one number
+			for (
+				let i = 0, size = request.data.sessions.length;
+				i < size;
+				i++
+			) {
+				request.data.sessions[i] = {
+					...request.data.sessions[i],
+					day: i + 1,
+				};
+			}
+
 			setData(request.data.sessions);
 		};
 		getData();

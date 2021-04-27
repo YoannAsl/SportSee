@@ -29,7 +29,7 @@ export default function PerformanceChart({ id }) {
 			// Capitalizes first letter of each kind
 			for (let i = 0, size = request.data.data.length; i < size; i++) {
 				request.data.data[i] = {
-					value: request.data.data[i].value,
+					...request.data.data[i],
 					kind:
 						request.data.kind[request.data.data[i].kind]
 							.charAt(0)
@@ -37,6 +37,7 @@ export default function PerformanceChart({ id }) {
 						request.data.kind[request.data.data[i].kind].slice(1),
 				};
 			}
+
 			setData(request.data.data);
 		};
 		getData();

@@ -14,10 +14,7 @@ function App() {
 					<Route exact path='/'>
 						<Redirect to='/user/12' />
 					</Route>
-					<Route
-						path='/user/:id'
-						render={(routeProps) => <UserPage {...routeProps} />}
-					/>
+					<Route path='/user/:id' component={UserPage} />
 					<Route component={ErrorPage} />
 				</Switch>
 			</BrowserRouter>
