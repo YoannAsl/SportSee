@@ -62,6 +62,7 @@ export default function ScoreChart({ score }) {
 						dataKey='score'
 						innerRadius={73}
 						outerRadius={85}
+						startAngle={90}
 					>
 						{score.map((entry, index) => {
 							if (index === 0) {
