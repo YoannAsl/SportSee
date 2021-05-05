@@ -14,10 +14,13 @@ import ScoreChart from './ScoreChart';
 import ActivityChart from './ActivityChart';
 import MacroCounter from './MacroCounter';
 
-const Container = styled.div`
-	margin: 60px 0 0 110px;
-	width: 1126px;
-	height: 779px;
+const Container = styled.main`
+	justify-self: center;
+	margin-top: 60px;
+	@media (max-width: 1025px) {
+		margin-top: 25px;
+		width: 90%;
+	}
 `;
 
 const Header = styled.header`
@@ -32,21 +35,34 @@ const Header = styled.header`
 	p {
 		font-size: 18px;
 	}
+	@media (max-width: 1025px) {
+		margin-bottom: 30px;
+	}
 `;
 
 const ChartsContainer = styled.div`
 	display: flex;
-	justify-content: space-between;
-	height: 613px;
 	> div {
 		display: flex;
 		flex-direction: column;
-		justify-content: space-between;
+		margin-right: 20px;
+		width: 835px;
 	}
 	aside {
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
+	}
+	@media (max-width: 1025px) {
+		flex-direction: column;
+		> div {
+			margin-right: 0;
+		}
+		aside {
+			flex-direction: row;
+			flex-wrap: wrap;
+			width: 835px;
+		}
 	}
 `;
 

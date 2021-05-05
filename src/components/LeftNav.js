@@ -8,13 +8,13 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 const Nav = styled.nav`
-	width: 117px;
-	height: 100vh;
+	position: relative;
+	height: calc(100vh - 91px);
 	background-color: black;
 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-	position: fixed;
-	top: 0;
-	z-index: -1;
+	@media (max-width: 1025px) {
+		height: 100%;
+	}
 `;
 
 const LinksContainer = styled.div`
@@ -25,8 +25,8 @@ const LinksContainer = styled.div`
 	width: 64px;
 	justify-content: space-between;
 	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
+	top: 45%;
+	transform: translate(-45%, -50%);
 `;
 
 const IconLink = styled(NavLink)`

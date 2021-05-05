@@ -15,7 +15,7 @@ import { getUserActivity } from '../services/api';
 import ActivityChartTooltip from './ActivityChartTooltip';
 
 const Container = styled.div`
-	width: 835px;
+	margin-bottom: 25px;
 	height: 320px;
 	border-radius: 5px;
 	background-color: #fbfbfb;

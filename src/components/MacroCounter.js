@@ -3,12 +3,15 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 const Container = styled.div`
-	width: 258px;
-	height: 124px;
 	border-radius: 5px;
 	background-color: #fbfbfb;
+	width: 258px;
 	padding: 32px;
 	display: flex;
+	@media (max-width: 1025px) {
+		padding: 16px;
+		margin: 15px 0;
+	}
 `;
 
 const IconContainer = styled.div`

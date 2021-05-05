@@ -14,11 +14,14 @@ const CustomHeader = styled.header`
 	img {
 		width: 178px;
 		margin-right: 150px;
+		@media (max-width: 1025px) {
+			margin-right: 70px;
+		}
 	}
 `;
 
 const Nav = styled.nav`
-	width: 100%;
+	width: 80%;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -36,7 +39,7 @@ export default function Header() {
 			<Nav>
 				<NavLink to='#'>Accueil</NavLink>
 				<NavLink to='#'>Profil</NavLink>
-				<NavLink to='#'>Réglage</NavLink>
+				<NavLink to='#'>Réglages</NavLink>
 				<NavLink to='#'>Communauté</NavLink>
 			</Nav>
 		</CustomHeader>
