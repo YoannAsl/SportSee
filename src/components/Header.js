@@ -35,7 +35,7 @@ const Nav = styled.nav`
 export default function Header() {
 	return (
 		<CustomHeader className='page-header'>
-			<img src={logo} alt={'Logo SportSee'} />
+			<img src={logo} alt='Logo SportSee' />
 			<Nav>
 				<NavLink to='#'>Accueil</NavLink>
 				<NavLink to='#'>Profil</NavLink>

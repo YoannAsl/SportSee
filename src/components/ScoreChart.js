@@ -54,7 +54,7 @@ export default function ScoreChart({ score }) {
 	return (
 		<Container>
 			<h2>Score</h2>
-			<InnerCircle></InnerCircle>
+			<InnerCircle />
 			<ResponsiveContainer width='100%' height='100%'>
 				<PieChart>
 					<Pie
@@ -86,7 +86,7 @@ export default function ScoreChart({ score }) {
 				</PieChart>
 			</ResponsiveContainer>
 			<Objective>
-				<span>{score[0].score * 100}%</span> <br /> de votre <br />{' '}
+				<span>{score[0].score * 100}%</span> <br /> de votre <br />
 				objectif
 			</Objective>
 		</Container>

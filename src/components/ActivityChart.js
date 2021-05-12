@@ -63,10 +63,10 @@ export default function ActivityChart({ id }) {
 		const getData = async () => {
 			const request = await getUserActivity(id);
 
-			// Changes the date on the XAxis to just one number
+			// Formats the date on the XAxis
 			for (
-				let i = 0, size = request.data.sessions.length;
-				i < size;
+				let i = 0, length = request.data.sessions.length;
+				i < length;
 				i++
 			) {
 				request.data.sessions[i] = {
@@ -74,12 +74,12 @@ export default function ActivityChart({ id }) {
 					day: i + 1,
 				};
 			}
-
 			setData(request.data.sessions);
 		};
 		getData();
 	}, [id]);
 
+	// Data for the domains
 	const kgArray = data.map((el) => el.kilogram);
 	const minYKg = Math.min(...kgArray) - 1;
 	const maxYKg = Math.max(...kgArray) + 1;

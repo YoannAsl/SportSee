@@ -40,7 +40,7 @@ const TextContainer = styled.div`
 	}
 `;
 
-export default function MacroCounter({ data, unit, image, color, alt, text }) {
+export default function KeyInfos({ data, unit, image, color, alt, text }) {
 	return (
 		<Container>
 			<IconContainer color={color}>
@@ -57,7 +57,7 @@ export default function MacroCounter({ data, unit, image, color, alt, text }) {
 	);
 }
 
-MacroCounter.propTypes = {
+KeyInfos.propTypes = {
 	data: PropTypes.number.isRequired,
 	unit: PropTypes.string.isRequired,
 	image: PropTypes.string.isRequired,

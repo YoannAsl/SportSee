@@ -39,33 +39,35 @@ export default function AverageSessionsChart({ id }) {
 	useEffect(() => {
 		const getData = async () => {
 			const request = await getUserAverageSessions(id);
-			setData(request.data.sessions);
+
+			// Formats data
+			const formatedData = request.data.sessions.map((session) => {
+				switch (session.day) {
+					case 1:
+						return { ...session, day: 'L' };
+					case 2:
+						return { ...session, day: 'M' };
+					case 3:
+						return { ...session, day: 'M' };
+					case 4:
+						return { ...session, day: 'J' };
+					case 5:
+						return { ...session, day: 'V' };
+					case 6:
+						return { ...session, day: 'S' };
+					case 7:
+						return { ...session, day: 'D' };
+
+					default:
+						return { ...session };
+				}
+			});
+			setData(formatedData);
 		};
 		getData();
 	}, [id]);
 
-	const adjustedData = data.map((el) => {
-		switch (el.day) {
-			case 1:
-				return { ...el, day: 'L' };
-			case 2:
-				return { ...el, day: 'M' };
-			case 3:
-				return { ...el, day: 'M' };
-			case 4:
-				return { ...el, day: 'J' };
-			case 5:
-				return { ...el, day: 'V' };
-			case 6:
-				return { ...el, day: 'S' };
-			case 7:
-				return { ...el, day: 'D' };
-
-			default:
-				return { ...el };
-		}
-	});
-
+	// Data for the domain
 	const lengthArray = data.map((el) => el.sessionLength);
 	const minY = Math.min(...lengthArray) / 1.6;
 	const maxY = Math.max(...lengthArray) * 1.6;
@@ -74,7 +76,7 @@ export default function AverageSessionsChart({ id }) {
 		<Container>
 			<Title>Durée moyenne des sessions</Title>
 			<ResponsiveContainer width='100%' height='100%'>
-				<LineChart data={adjustedData}>
+				<LineChart data={data}>
 					<XAxis
 						axisLine={false}
 						tickLine={false}

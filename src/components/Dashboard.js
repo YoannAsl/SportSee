@@ -12,7 +12,7 @@ import PerformanceChart from './PerformanceChart';
 import AverageSessionsChart from './AverageSessionsChart';
 import ScoreChart from './ScoreChart';
 import ActivityChart from './ActivityChart';
-import MacroCounter from './MacroCounter';
+import KeyInfos from './KeyInfos';
 
 const Container = styled.main`
 	justify-self: center;
@@ -115,28 +115,28 @@ export default function Dashboard({ match }) {
 					</SmallChartsContainer>
 				</div>
 				<aside>
-					<MacroCounter
+					<KeyInfos
 						data={keyData.calorieCount}
 						unit='kCal'
 						image={caloriesIcon}
 						color='rgba(255, 0, 0, 0.1)'
 						text='Calories'
 					/>
-					<MacroCounter
+					<KeyInfos
 						data={keyData.proteinCount}
 						unit='g'
 						image={proteinsIcon}
 						color='rgba(74, 184, 255, 0.1)'
 						text='Proteines'
 					/>
-					<MacroCounter
+					<KeyInfos
 						data={keyData.carbohydrateCount}
 						unit='g'
 						image={carbsIcon}
 						color='rgba(249, 206, 35, 0.1)'
 						text='Glucides'
 					/>
-					<MacroCounter
+					<KeyInfos
 						data={keyData.lipidCount}
 						unit='g'
 						image={lipidsIcon}
