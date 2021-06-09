@@ -17,7 +17,7 @@
 
 1. Clone this repository
     ```sh
-    git clone https://github.com/YoannAsl/YoannAgesilas_12_10042021.git
+    git clone https://github.com/YoannAsl/SportSee.git
     ```
 2. Install NPM packages 
     ```sh
