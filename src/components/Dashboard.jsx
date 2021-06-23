@@ -7,7 +7,7 @@ import lipidsIcon from '../assets/icon-lipids.svg';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import { getUserInfos } from './../services/api';
+import { getUserInfos } from '../services/api';
 import PerformanceChart from './PerformanceChart';
 import AverageSessionsChart from './AverageSessionsChart';
 import ScoreChart from './ScoreChart';
