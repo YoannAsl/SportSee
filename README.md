@@ -1,4 +1,4 @@
-# SportSee Dashboard
+# SportSee
 
 ## Prerequisites
 
